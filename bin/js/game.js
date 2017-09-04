@@ -1,5 +1,5 @@
 /// <reference path="../tsDefinitions/phaser.d.ts" />
-var Costanera = (function () {
+var Costanera = /** @class */ (function () {
     function Costanera(ancho, alto) {
         // create our phaser game
         // 800 - width
@@ -7,7 +7,9 @@ var Costanera = (function () {
         // Phaser.AUTO - determine the renderer automatically (canvas, webgl)
         // 'content' - the name of the container to add our game to
         // { preload:this.preload, create:this.create} - functions to call for our states
-        this.game = new Phaser.Game(ancho, alto, Phaser.CENTER, 'content', { preload: this.preload, create: this.create });
+        this.game = new Phaser.Game(ancho, alto, Phaser.CENTER, 'content', {
+            preload: this.preload, create: this.create
+        });
     }
     Costanera.prototype.preload = function () {
         // add our logo image to the assets class under the
@@ -27,5 +29,5 @@ var Costanera = (function () {
 }());
 // when the page has finished loading, create our game
 window.onload = function () {
-    var game = new Costanera(1350, 550);
+    var game = new Costanera(window.innerWidth, window.innerHeight);
 };
