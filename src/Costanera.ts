@@ -5,7 +5,7 @@ class Costanera
 	game:Phaser.Game;
 	ancho: number;
 	alto:number;
-	personaje: Phaser.Sprite;
+	personaje: Personaje;
 	cursores:Phaser.CursorKeys;
 	saltarBtn:Phaser.Key;
 	dobleSalto:Phaser.Key;
@@ -36,11 +36,11 @@ class Costanera
 		return this.alto;
 	}
 
-	setPersonaje(personaje: Phaser.Sprite ){
+	setPersonaje(personaje: Personaje ){
 		this.personaje = personaje;
 	}
 
-	getPersonaje (){
+	getPersonaje ():Personaje{
 		return this.personaje;
 	}
 
@@ -178,9 +178,9 @@ class Costanera
 			}
 
 			if (this.getDobleSalto().isDown && (this.getPersonaje().body|| this.getPersonaje().body.touching.down))
-				{
-					this.getPersonaje().body.velocity.y = -400;
-				}
+			{
+				this.getPersonaje().body.velocity.y = -400;
+			}
 			
 			if (this.getBajarBtn().isDown && (this.getPersonaje().body || this.getPersonaje().body.touching.down))
 			{
