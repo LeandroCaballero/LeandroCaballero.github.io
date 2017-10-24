@@ -1,0 +1,6 @@
+Caracteristicas: 
+-Al entrar en contacto una manzana con, el jugador se suman 20 puntos
+-Al entrar en contacto con una piedra, el jugador pierde una vida
+-A los 200 puntos se suma una vida
+-Si por ejemplo el jugador colisiona con una piedra, el contador de los puntos para la "VIDA EXTRA", se reinicia, obligando así al jugador a que tenga que juntar si o si los 200 puntos de seguido
+-Si las vidas llegan a "0", game over.

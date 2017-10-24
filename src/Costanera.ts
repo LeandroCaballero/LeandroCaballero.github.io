@@ -1,201 +1,320 @@
 /// <reference path="../tsDefinitions/phaser.d.ts" />
-import {Personaje} from './Personaje'
-import {Piedra} from './Piedra'
-import {Fruta} from './Fruta'
+/// <reference path="./Personaje.ts" />
+/// <reference path="./Piedra.ts" />
+/// <reference path="./Fruta.ts" />
+/// <reference path="./Bonus.ts" />
 
-export class Costanera
+module JuegoCostanera {
+	export class Costanera{
+		game:Phaser.Game;
+		ancho: number;
+		alto:number;
+		personaje: Personaje;
+		piedra: Piedra;
+		fruta: Fruta;
+		cursores:Phaser.CursorKeys;
+		saltarBtn:Phaser.Key;
+		textoVidas: Phaser.Text;
+		textoPuntos: Phaser.Text;
+		dobleSalto:number;
+		bajarBtn:Phaser.Key;
 
-{
-	game:Phaser.Game;
-	ancho: number;
-	alto:number;
-	personaje: Personaje;
-	cursores:Phaser.CursorKeys;
-	saltarBtn:Phaser.Key;
-	dobleSalto:Phaser.Key;
-	bajarBtn:Phaser.Key;
+//--	------------------setters y getters --------------------------------------
+		setGame(game: Phaser.Game ){
+			this.game = game;
+		}
 
-//--------------------setters y getters --------------------------------------
-	setGame(game: Phaser.Game ){
-		this.game = game;
-	}
+		getGame (){
+			return this.game;
+		}
 
-	getGame (){
-		return this.game;
-	}
+		setAncho(ancho: number ){
+			this.ancho = ancho;
+		}
 
-	setAncho(ancho: number ){
-		this.ancho = ancho;
-	}
+		getAncho (){
+			return this.ancho;
+		}
 
-	getAncho (){
-		return this.ancho;
-	}
+		setAlto(alto: number ){
+			this.alto = alto;
+		}
 
-	setAlto(alto: number ){
-		this.alto = alto;
-	}
+		getAlto (){
+			return this.alto;
+		}
 
-	getAlto (){
-		return this.alto;
-	}
+		setPersonaje(personaje: Personaje ){
+			this.personaje = personaje;
+		}
 
-	setPersonaje(personaje: Personaje ){
-		this.personaje = personaje;
-	}
+		getPersonaje ():Personaje{
+			return this.personaje;
+		}
 
-	getPersonaje ():Personaje{
-		return this.personaje;
-	}
+		setPiedra(value:Piedra){
+			this.piedra = value;
+		}
 
-	setCursores(cursores: Phaser.CursorKeys ){
-		this.cursores = cursores;
-	}
+		getPiedra ():Piedra{
+			return this.piedra;
+		}
 
-	getCursores (){
-		return this.cursores;
-	}
+		setFruta(value: Fruta){
+			this.fruta = value;
+		}
 
-	setSaltarBtn(saltarBtn: Phaser.Key ){
-		this.saltarBtn = saltarBtn;
-	}
+		getFruta (){
+			return this.fruta;
+		}
 
-	getSaltarBtn (){
-		return this.saltarBtn;
-	}
+		setCursores(cursores: Phaser.CursorKeys ){
+			this.cursores = cursores;
+		}
 
-	setDobleSalto(dobleSalto: Phaser.Key ){
-		this.dobleSalto = dobleSalto;
-	}
+		getCursores (){
+			return this.cursores;
+		}
 
-	getDobleSalto (){
-		return this.dobleSalto;
-	}
+		setSaltarBtn(saltarBtn: Phaser.Key ){
+			this.saltarBtn = saltarBtn;
+		}
 
-	setBajarBtn(valor: Phaser.Key ){
-		this.bajarBtn = valor;
-	}
+		getSaltarBtn (){
+			return this.saltarBtn;
+		}
 
-	getBajarBtn (){
-		return this.bajarBtn;
-	}
-
-
-
-
-
-	constructor(ancho: number,alto:number)
-	{
-		// create our phaser game
-		// 800 - width
-		// 600 - height
-		// Phaser.AUTO - determine the renderer automatically (canvas, webgl)
-		// 'content' - the name of the container to add our game to
-		// { preload:this.preload, create:this.create} - functions to call for our states
-		this.setGame(new Phaser.Game( ancho, alto, Phaser.CENTER, 'content', { 
-			preload:this.preload, 
-			create:this.create, 
-			update: this.update,
-			setGame: this.setGame,
-			getGame: this.getGame,
-			setAncho: this.setAncho,
-			getAncho: this.getAncho,
-			setAlto: this.setAlto,
-			getAlto: this.getAlto,
-			setPersonaje: this.setPersonaje,
-			getPersonaje: this.getPersonaje,
-			setCursores: this.setCursores,
-			getCursores: this.getCursores,
-			setSaltarBtn: this.setSaltarBtn,
-			getSaltarBtn: this.getSaltarBtn,
-			setDobleSalto: this.setDobleSalto,
-			getDobleSalto: this.getDobleSalto,
-			setBajarBtn: this.setBajarBtn,
-			getBajarBtn: this.getBajarBtn,
-
-		} ));
-	}
+		getDobleSalto(){
+			return this.dobleSalto
+		}
 	
-	preload()
-	{
-		// add our logo image to the assets class under the
-		// key 'logo'. We're also setting the background colour
-		// so it's the same as the background colour in the image
-		this.getGame().load.image('player', 'assets/phaser-dude.png');
-		this.getGame().load.image( 'costanera', "assets/costanera.jpg" );
+		setDobleSalto(valor){
+			this.dobleSalto=valor;
+		}
 		
-		//Agregamos un comentario para probar subir cambios a GIT desde el editor
-		//hacemos un cambio en el archivo
-		
-	}
+		setBajarBtn(valor: Phaser.Key ){
+			this.bajarBtn = valor;
+		}
 	
-	create()
-	{
-		// add the 'logo' sprite to the game, position it in the
-		// center of the screen, and set the anchor to the center of
-		// the image so it's centered properly. There's a lot of
-		// centering in that last sentence
+		getBajarBtn (){
+			return this.bajarBtn;
+		}
+	
 
-		//Seteamos la imagen del juego en la posicion '0,0'
-	    //y el ancho y alto de la misma según el tamaño de la ventana actual
-		var logo = this.getGame().add.sprite( this.getGame().world.centerX, this.getGame().world.centerY, 'costanera' );
-		logo.x = 0;
-		logo.y = 0;
-		logo.height = this.getGame().height;
-		logo.width = this.getGame().width;
+		getTextoPuntos(){
+			return this.textoPuntos;
+		}
 
-		var personaje = this.getGame().add.sprite(100, 200, 'player');
-		personaje.height = 150;
-		personaje.width = 75;
-		this.setPersonaje(personaje);
-		
-		this.getGame().physics.arcade.enable(this.getPersonaje());
-		
-		this.getPersonaje().body.collideWorldBounds = true;
-		this.getPersonaje().body.gravity.y = 500;
-		
-		this.setCursores(this.getGame().input.keyboard.createCursorKeys());
-		this.setSaltarBtn(this.getGame().input.keyboard.addKey(Phaser.Keyboard.SPACEBAR));
-		this.setDobleSalto(this.getGame().input.keyboard.addKey(Phaser.Keyboard.J));
-		this.setBajarBtn(this.getGame().input.keyboard.addKey(Phaser.Keyboard.G));
-		
-	}
+		setTextoPuntos(value:Phaser.Text){
+			this.textoPuntos = value;
+		}
 
-	update () {
+		getTextoVidas(){
+			return this.textoVidas;
+		}
+
+		setTextoVidas(value:Phaser.Text){
+			this.textoVidas = value;
+		}
+
+		constructor(ancho: number,alto:number)
+		{
+			this.setGame(new Phaser.Game( ancho, alto, Phaser.CANVAS, 'content', { 
+				preload:this.preload, 
+				create:this.create, 
+				update: this.update,
+				setGame: this.setGame,
+				getGame: this.getGame,
+				setAncho: this.setAncho,
+				getAncho: this.getAncho,
+				setAlto: this.setAlto,
+				getAlto: this.getAlto,
+				setPersonaje: this.setPersonaje,
+				getPersonaje: this.getPersonaje,
+				setPiedra: this.setPiedra,
+				getPiedra: this.getPiedra,
+				setFruta: this.setFruta,
+				getFruta: this.getFruta,
+				setCursores: this.setCursores,
+				getCursores: this.getCursores,
+				setSaltarBtn: this.setSaltarBtn,
+				getSaltarBtn: this.getSaltarBtn,
+				collisionPiedra: this.collisionPiedra,
+				collisionFruta: this.collisionFruta,
+				listener: this.listener,
+				getDobleSalto: this.getDobleSalto,
+				setDobleSalto: this.setDobleSalto,
+				setBajarBtn: this.setBajarBtn,
+				getBajarBtn: this.getBajarBtn,
+				getTextoPuntos: this.getTextoPuntos,
+				setTextoPuntos: this.setTextoPuntos,
+				getTextoVidas: this.getTextoVidas,
+				setTextoVidas: this.setTextoVidas
+			} ));
+		}
+
+		preload()
+		{ 
+			// add our logo image to the assets class under the
+			// key 'logo'. We're also setting the background colour
+			// so it's the same as the background colour in the image
+			this.getGame().load.image('piedra', 'assets/piedra.png');
+			this.getGame().load.image('bonus', 'assets/manzana.png');
+			this.getGame().load.image('player', 'assets/phaser-dude.png');
+			this.getGame().load.image( 'costanera', "assets/costanera.jpg" );
+			this.getGame().load.image('gameover', "assets/gameover.png" )
+		}
+
+		create()
+		{
+			//Seteamos la imagen del juego en la posicion '0,0'
+		    //y el ancho y alto de la misma según el tamaño de la ventana actual
+			var logo = this.getGame().add.sprite( this.getGame().world.centerX, this.getGame().world.centerY, 'costanera' );
+			logo.x = 0;
+			logo.y = 0;
+			logo.height = this.getGame().height;
+			logo.width = this.getGame().width;
+
+			this.getGame().physics.startSystem(Phaser.Physics.ARCADE);
+			this.getGame().time.desiredFps = 30;
+			this.getGame().physics.arcade.gravity.y = 250;
+
+			//Personaje
+			var personaje = new Personaje(this.getGame(),this.getGame().world.centerX, this.getGame().world.top, 'player');
+			this.setPersonaje(personaje);
 		
-			// this.game.physics.arcade.collide(this.player, platforms);
-		
+			//piedra
+			var piedra = new Piedra(this.getGame(),300, 50, 'piedra');
+			this.setPiedra(piedra);
+			this.getGame().physics.enable(this.getPiedra(), Phaser.Physics.ARCADE);
+
+			//Fruta
+			var fruta = new Fruta(this.getGame(),300, 50, 'bonus');
+			this.setFruta(fruta);
+			fruta.name = 'bonus';
+			this.getGame().physics.enable(fruta, Phaser.Physics.ARCADE);
+
+			//Click event
+			logo.inputEnabled = true;
+			logo.events.onInputDown.add(this.listener, this);
+			this.setCursores(this.getGame().input.keyboard.createCursorKeys());
+			this.setSaltarBtn(this.getGame().input.keyboard.addKey(Phaser.Keyboard.SPACEBAR));
+			this.setBajarBtn(this.getGame().input.keyboard.addKey(Phaser.Keyboard.B));
+
+
+ 			//  Puntos
+			var scoreString = 'Puntos: ';
+    		var scoreText = this.getGame().add.text(10, 10, scoreString + this.getPersonaje().getPuntos(), { font: '34px Arial', fill: '#fff' });
+			this.setTextoPuntos(scoreText);
+
+			//  Vidas
+			var vidasString = 'Vidas: ';
+ 			var vidasText = this.getGame().add.text(this.getGame().world.width - 140, 10, vidasString + this.getPersonaje().getVidas(), { font: '34px Arial', fill: '#fff' });
+			this.setTextoVidas(vidasText); 
+		}
+
+		update () 
+		{
+			this.getGame().physics.arcade.collide(this.getPiedra().getEmitterPiedras(),this.getPersonaje(),this.collisionPiedra,null, this);
+			this.getGame().physics.arcade.collide(this.getFruta().getEmitterFrutas(),this.getPersonaje(),this.collisionFruta,null, this);
+
 			this.getPersonaje().body.velocity.x = 0;
-		
 			if (this.getCursores().left.isDown)
 			{
-				this.getPersonaje().body.velocity.x = -250;
+				this.getPersonaje().body.velocity.x = -500;
+				if (this.getPersonaje().getOrientacion() != 'left'){
+						this.getPersonaje().animations.play('left');
+						this.getPersonaje().setOrientacion('left');
+				}
 			}
-			else if (this.getCursores().right.isDown)
-			{
-				this.getPersonaje().body.velocity.x = 250;
-			}
-		
-			if (this.getSaltarBtn().isDown && (this.getPersonaje().body.onFloor() || this.getPersonaje().body.touching.down))
-			{
-				this.getPersonaje().body.velocity.y = -400;
+			else if (this.getCursores().right.isDown){
+				this.getPersonaje().body.velocity.x = 500;
+				if (this.getPersonaje().getOrientacion() != 'right'){
+						this.getPersonaje().animations.play('right');
+						this.getPersonaje().setOrientacion('right');
+				}
+			} else {
+				if (this.getPersonaje().getOrientacion() != 'idle'){
+						this.getPersonaje().animations.stop();
+				
+						if (this.getPersonaje().getOrientacion() == 'left'){
+							this.getPersonaje().frame = 0;
+						}
+						else{
+							this.getPersonaje().frame = 5;
+						}
+						this.getPersonaje().setOrientacion('idle')
+				}
 			}
 
-			if (this.getDobleSalto().isDown && (this.getPersonaje().body|| this.getPersonaje().body.touching.down))
-			{
+			if (this.getSaltarBtn().isDown && this.getPersonaje().body.onFloor()) {
 				this.getPersonaje().body.velocity.y = -400;
+				this.setDobleSalto(1);
+				this.getSaltarBtn().isDown = false;
+				  console.log(this.getSaltarBtn(), "Primer Salto");
+			   }
+		   if (this.getSaltarBtn().isDown && this.getDobleSalto() == 1) {
+				this.getPersonaje().body.velocity.y = -400;
+				this.setDobleSalto(2);
+				this.getSaltarBtn().isDown = false;
+				  console.log(this.getDobleSalto, "Segundo salto");
 			}
-			
 			if (this.getBajarBtn().isDown && (this.getPersonaje().body || this.getPersonaje().body.touching.down))
 			{
 				this.getPersonaje().body.velocity.y = 800;
 			}
-			
-			
-		}
-}
 
-// when the page has finished loading, create our game
-window.onload = () => {
-	var game = new Costanera(window.innerWidth,window.innerHeight);
+			if (this.getPersonaje().getVidas() == 0){
+				
+				this.getPersonaje().body.collideWorldBounds = false;		
+				this.getGame().time.events.repeat(Phaser.Timer.SECOND+2000 , 0, this.personajeDie, this);		
+				//GAMEOVER
+				var gameOverText = this.getGame().add.image(this.getGame().world.centerX-130,this.getGame().world.centerY-125,'gameover');			
+			
+			}
+		}
+
+		personajeDie(){
+			this.getPersonaje().exists = false;	
+		}
+
+		collisionPiedra (piedra, personaje) 
+		{
+			piedra.kill();
+			personaje.kill();
+
+			//  Reduce the lives
+			this.getPersonaje().setVidas(this.getPersonaje().getVidas() - 1);
+			this.getTextoVidas().text = "Vidas: " + this.getPersonaje().getVidas().toString();	
+			this.getPersonaje().setPuntosB(0);
+		}
+
+		collisionFruta (fruta, personaje) 
+		{
+			personaje.kill();
+			//  Increase the score
+			this.getPersonaje().setPuntos(this.getPersonaje().getPuntos() + 20);
+			this.getPersonaje().setPuntosB(this.getPersonaje().getPuntosB() + 20);
+			this.getTextoPuntos().text = "Puntos: " + this.getPersonaje().getPuntos().toString();
+			
+			if(this.getPersonaje().getPuntosB() == 200 ){
+				this.getPersonaje().setVidas(this.getPersonaje().getVidas() + 1);
+				this.getTextoVidas().text = "Vidas: " + this.getPersonaje().getVidas().toString();
+				this.getPersonaje().setPuntosB(0);
+			}	
+		}
+
+		listener () 
+		{
+			this.getPersonaje().revive()
+		}
+
+	}
+
+	// when the page has finished loading, create our game
+	window.onload = () => 
+	{
+		var game = new Costanera(window.innerWidth,window.innerHeight);
+	}
+
 }
