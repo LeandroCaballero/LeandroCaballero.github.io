@@ -1,4 +1,3 @@
-Caracteristicas: 
 -Al entrar en contacto una manzana con, el jugador se suman 20 puntos
 -Al entrar en contacto con una piedra, el jugador pierde una vida
 -A los 200 puntos se suma una vida
