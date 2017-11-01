@@ -337,12 +337,8 @@ var JuegoCostanera;
             }
             if (this.getPersonaje().getVidas() == 0) {
                 this.getPersonaje().body.collideWorldBounds = false;
-                this.getGame().time.events.repeat(Phaser.Timer.SECOND + 2000, 0, this.personajeDie, this);
                 var gameOverText = this.getGame().add.image(this.getGame().world.centerX - 130, this.getGame().world.centerY - 125, 'gameover');
             }
-        };
-        Costanera.prototype.personajeDie = function () {
-            this.getPersonaje().exists = false;
         };
         Costanera.prototype.collisionPiedra = function (piedra, personaje) {
             piedra.kill();

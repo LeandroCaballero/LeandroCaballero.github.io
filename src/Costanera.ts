@@ -248,17 +248,14 @@ module JuegoCostanera {
 
 			if (this.getPersonaje().getVidas() == 0){
 				
-				this.getPersonaje().body.collideWorldBounds = false;		
-				this.getGame().time.events.repeat(Phaser.Timer.SECOND+2000 , 0, this.personajeDie, this);		
+				this.getPersonaje().body.collideWorldBounds = false;				
 				
 				var gameOverText = this.getGame().add.image(this.getGame().world.centerX-130,this.getGame().world.centerY-125,'gameover');			
 			
 			}
 		}
 
-		personajeDie(){
-			this.getPersonaje().exists = false;	
-		}
+		
 
 		collisionPiedra (piedra, personaje) 
 		{
